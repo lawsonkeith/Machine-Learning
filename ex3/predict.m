@@ -20,16 +20,21 @@ p = zeros(size(X, 1), 1);
 %       information see 'help max'. If your examples are in rows, then, you
 %       can use max(A, [], 2) to obtain the max for each row.
 %
-
-
-
-
-
-
-
-
-
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
+z2 = X * Theta1';
+a2 = [ones(m,1) sigmoid(z2)];    
+%Multiply by Theta2, compute the sigmoid() and it becomes 'a3'.
+a3 = sigmoid(a2 * Theta2');
+%Now use the max(a3, [], 2) function to return two vectors - one of the highest value for each row, 
+%and one with its index. Ignore the highest values. Keep the vector of the indexes where the highest 
+%values were found. These are your predictions
+[ max_value, max_index ] = max( a3, [], 2 )
+p=max_index;
 % =========================================================================
-
+%predict = sigmoid(X * all_theta');
+%disp(predict);
+%[ max_value, max_index ] = max( predict, [], 2 )
+%   
 
 end
