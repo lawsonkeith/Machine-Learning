@@ -83,7 +83,17 @@ J = J + reg;
 %4 - Compute the regularized component of the cost according to ex4.pdf Page 6, using Θ1 and Θ2 (excluding the Theta columns for the
 % bias units), along with λ, and m. The easiest method to do this is to compute the regularization terms separately, then add them to 
 %the unregularized cost from Step 3.
+Sigma3 = a3 - Y;
 
+Sigma2 = (Sigma3*Theta2 .* sigmoidGradient([ones(size(z2, 1), 1) z2]))(:, 2:end);
+
+
+Delta_1 = Sigma2'*a1;
+Delta_2 = Sigma3'*a2;
+
+
+Theta1_grad = Delta_1./m + (lambda/m)*[zeros(size(Theta1,1), 1) Theta1(:, 2:end)];
+Theta2_grad = Delta_2./m + (lambda/m)*[zeros(size(Theta2,1), 1) Theta2(:, 2:end)];
 
 %pause(111111110); 
 %grad = (1/m)*(sigmoid(X*theta)-y)'*X
