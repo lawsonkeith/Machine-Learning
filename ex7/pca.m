@@ -22,6 +22,8 @@ S = zeros(n);
 
 
 
+%ompute the transpose of X times X, scale by 1/m, and use the svd() function to return the U, S, and V matrices.
+[U, S, V] = svd(1/m * (X' * X) );
 
 
 
