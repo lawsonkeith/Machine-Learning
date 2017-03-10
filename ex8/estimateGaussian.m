@@ -22,11 +22,22 @@ sigma2 = zeros(n, 1);
 %
 
 
+mu = 1/m * sum(X);
+
+%sigma2 = 1/m * sum(x-mu) ^2;
 
 
 
-
-
+for im=(1:m)
+  for in=(1:n)
+    sigma2(in) = sigma2(in) + (X(im,in) - mu(in))^2; 
+  endfor
+endfor
+for in=(1:n)
+    sigma2(in) = sigma2(in) * 1/m;
+endfor
+  
+%disp(mu);
 
 
 
